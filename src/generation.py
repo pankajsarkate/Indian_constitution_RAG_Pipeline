@@ -1,25 +1,39 @@
 from transformers import pipeline
 from config import *
+import os
 
-generator = pipeline("text2text-generation", model=LLM_MODEL, device=-1)
+
+
+# VERY IMPORTANT (must be before transformers import)
+os.environ["TRANSFORMERS_NO_TORCHVISION"] = "1"
+os.environ["TRANSFORMERS_NO_LIBROSA"] = "1"
+
+from transformers import pipeline
+from config import *
+
+# Load model
+generator = pipeline(
+    "text2text-generation",
+    model=LLM_MODEL,
+    device=-1  # CPU
+)
 
 def generate_answer(question, context):
     prompt = f"""
-        You are a strict question answering system.
+            You are a strict question answering system.
 
-        Rules:
-        1. Answer ONLY using the context below
-        2. If answer is NOT in the context → say "I don't know"
-        3. DO NOT guess
-        4. DO NOT make up answers
+            Rules:
+            1. Answer ONLY using the context
+            2. If answer is not in context → say "I don't know"
+            3. Do NOT guess
 
-        Context:
-        {context}
+            Context:
+            {context}
 
-        Question: {question}
+            Question: {question}
 
-        Answer:
-        """
+            Answer:
+            """
 
     result = generator(prompt, max_length=200)
     return result[0]["generated_text"]
