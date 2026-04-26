@@ -1,6 +1,8 @@
+
+import os
+from config import *
 from transformers import pipeline
 from config import *
-import os
 
 
 
@@ -8,8 +10,7 @@ import os
 os.environ["TRANSFORMERS_NO_TORCHVISION"] = "1"
 os.environ["TRANSFORMERS_NO_LIBROSA"] = "1"
 
-from transformers import pipeline
-from config import *
+
 
 # Load model
 generator = pipeline(
@@ -27,13 +28,13 @@ def generate_answer(question, context):
             2. If answer is not in context → say "I don't know"
             3. Do NOT guess
 
-            Context:
-            {context}
+        Context:
+        {context}
 
-            Question: {question}
+        Question: {question}
 
-            Answer:
-            """
+        Answer:
+        """
 
     result = generator(prompt, max_length=200)
     return result[0]["generated_text"]
