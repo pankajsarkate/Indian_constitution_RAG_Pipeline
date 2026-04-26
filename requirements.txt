@@ -1,16 +1,16 @@
 
-
-chromadb
-transformers
-scikit-learn
 gradio
-streamlit
 langchain-text-splitters
 sentence-transformers
 langchain-community 
 langchain-chroma
-langchain
-torch
+streamlit==1.32.0
+langchain==0.1.16
+chromadb==0.4.24
+sentence-transformers==2.6.1
+transformers==4.37.2
+torch==2.1.2
+scikit-learn
 
 
 

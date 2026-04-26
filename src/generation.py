@@ -1,7 +1,7 @@
 from transformers import pipeline
 from config import *
 
-generator = pipeline("text2text-generation", model=LLM_MODEL)
+generator = pipeline("text2text-generation", model=LLM_MODEL, device=-1)
 
 def generate_answer(question, context):
     prompt = f"""
