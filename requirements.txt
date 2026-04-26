@@ -1,0 +1,17 @@
+
+
+chromadb
+transformers
+scikit-learn
+gradio
+streamlit
+langchain-text-splitters
+sentence-transformers
+langchain-community 
+langchain-chroma
+langchain
+torch
+
+
+
+
