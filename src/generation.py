@@ -1,40 +1,23 @@
-
-import os
-from config import *
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import torch
 from config import *
 
-
-
-# VERY IMPORTANT (must be before transformers import)
-# os.environ["TRANSFORMERS_NO_TORCHVISION"] = "1"
-# os.environ["TRANSFORMERS_NO_LIBROSA"] = "1"
-
-
-
-# Load model
-generator = pipeline(
-    "text2text-generation",
-    model=LLM_MODEL,
-    device=-1  # CPU
-)
+# Load model manually (no torchvision issue)
+tokenizer = AutoTokenizer.from_pretrained(LLM_MODEL)
+model = AutoModelForSeq2SeqLM.from_pretrained(LLM_MODEL)
 
 def generate_answer(question, context):
     prompt = f"""
-            You are a strict question answering system.
+Answer only from the context.
+If not found, say "I don't know".
 
-            Rules:
-            1. Answer ONLY using the context
-            2. If answer is not in context → say "I don't know"
-            3. Do NOT guess
+Context:
+{context}
 
-        Context:
-        {context}
+Question: {question}
+"""
 
-        Question: {question}
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True)
+    outputs = model.generate(**inputs, max_new_tokens=150)
 
-        Answer:
-        """
-
-    result = generator(prompt, max_length=200)
-    return result[0]["generated_text"]
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
