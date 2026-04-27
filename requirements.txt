@@ -3,6 +3,7 @@ chromadb==0.4.24
 sentence-transformers==2.6.1
 transformers==4.37.2
 torch
+pillow==9.5.0
 
 
 
