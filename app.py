@@ -1,9 +1,11 @@
 
-
-import gradio as gr
+import streamlit as st
 from src.pipeline import rag_pipeline
 
-def chat_fn(message, history):
-    return rag_pipeline(message)
+st.title("RAG Chatbot")
 
-gr.ChatInterface(chat_fn).launch()
+query = st.text_input("Ask something:")
+
+if query:
+    response = rag_pipeline(query)
+    st.write(response)
