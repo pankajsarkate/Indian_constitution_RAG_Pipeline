@@ -1,0 +1,6 @@
+[server]
+headless = true
+
+[environment]
+TRANSFORMERS_NO_TORCHVISION = "1"
+TRANSFORMERS_NO_LIBROSA = "1"

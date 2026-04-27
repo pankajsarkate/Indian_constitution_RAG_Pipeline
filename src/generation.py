@@ -7,8 +7,8 @@ from config import *
 
 
 # VERY IMPORTANT (must be before transformers import)
-os.environ["TRANSFORMERS_NO_TORCHVISION"] = "1"
-os.environ["TRANSFORMERS_NO_LIBROSA"] = "1"
+# os.environ["TRANSFORMERS_NO_TORCHVISION"] = "1"
+# os.environ["TRANSFORMERS_NO_LIBROSA"] = "1"
 
 
 
