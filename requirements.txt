@@ -1,7 +1,6 @@
 langchain-text-splitters
-sentence-transformers
-langchain-community 
-langchain-chroma
+langchain-community==0.0.34
+langchain-chroma==0.1.0
 streamlit==1.32.0
 langchain==0.1.16
 chromadb==0.4.24
